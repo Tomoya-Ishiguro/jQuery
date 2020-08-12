@@ -1,45 +1,33 @@
-$(function() {
+$(function(){
 
-  $('#login-show').click(function() {
-    $('#login-modal').fadeIn();
-  });
-
-  $('.signup-show').click(function() {
-    $('#signup-modal').fadeIn();
-  });
-
-  $('.close-modal').click(function() {
-    $('#login-modal').fadeOut();
-    $('#signup-modal').fadeOut();
-  });
-  
-  $('.lesson-hover').hover(
-    function() {
-      $(this).find('.text-contents').addClass('text-active'); 
+  // SNSボタン
+  $('.social-icon').hover(
+    function(){
+      $(this).children('span').animate({
+        'font-size':'30px'
+      }, 300);
     },
-    function() {
-      $(this).find('.text-contents').removeClass('text-active');
+    function(){
+      $(this).children('span').animate({
+        'font-size':'24px'
+      }, 300);
     }
   );
-
-  // FAQのアコーディオン
-  $('.faq-list-item').click(function() {
-    var $answer = $(this).find('.answer');
-    if($answer.hasClass('open')) { 
-      $answer.removeClass('open');
-      // slideUpメソッドを用いて、$answerを隠してください
-      $answer.slideUp();
-      // 子要素のspanタグの中身をtextメソッドを用いて書き換えてください
-      $(this).find('span').text('+');
-      
-    } else {
-      $answer.addClass('open'); 
-      // slideDownメソッドを用いて、$answerを表示してください
-      $answer.slideDown();
-      
-      // 子要素のspanタグの中身をtextメソッドを用いて書き換えてください
-      $(this).find('span').text('-');
-      
-    }
+  
+  // トップへ戻るボタン
+  $('#top-btn').click(function(){
+    $('html,body').animate({ 
+      'scrollTop': 0 
+    }, 'slow');
   });
+  
+  // ヘッダー内の<a>タグをクリックしたときのclickイベントを作成してください。
+  $('header a').click(function(){
+    var id = $(this).attr('href');
+    var position = $(id).offset().top;
+    $('html, body').animate({
+      'scrollTop':position
+    }, 500);
+  });
+  
 });
